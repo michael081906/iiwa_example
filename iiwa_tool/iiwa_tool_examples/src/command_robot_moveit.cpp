@@ -46,9 +46,9 @@ int main (int argc, char **argv) {
   
       group.setStartStateToCurrentState();
       group.setPoseTarget(command_cartesian_position, ee_link);
-      success_plan = group.plan(myplan);
+      success_plan = static_cast<bool>(group.plan(myplan));
       if (success_plan) {
-        motion_done = group.execute(myplan);
+        motion_done = static_cast<bool>(group.execute(myplan)); 
       }
       if (motion_done) {
         direction *= -1; // In the next iteration the motion will be on the opposite direction
